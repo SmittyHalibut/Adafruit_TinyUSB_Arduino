@@ -35,6 +35,11 @@
 #include "device/usbd.h"
 #include "device/usbd_pvt.h"
 
+/* SmittyHalibut Audio merge. Is this really necessary?
+#include "class/video/video_device.h"
+ */
+
+
 //--------------------------------------------------------------------+
 // USBD Configuration
 //--------------------------------------------------------------------+

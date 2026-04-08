@@ -35,6 +35,46 @@
 // Class Driver Configuration
 //--------------------------------------------------------------------+
 
+/* SmittyHalibut, Merging Audio.
+ * I'm not sure whether this is still needed.  The code is pretty different
+ * here, and the new code looks like it determines things dynamically.
+ * I think the spirit of this change is kept, but differently.
+ *
+// dynamically determine the descriptor length by API
+int tinyusb_audio_descriptor_length(unsigned char      funcN);
+
+#ifdef CFG_TUD_AUDIO_FUNC_1_DESC_LEN_API
+#  define CFG_TUD_AUDIO_FUNC_1_DESC_LEN tinyusb_audio_descriptor_length(1)
+#endif
+#ifdef CFG_TUD_AUDIO_FUNC_2_DESC_LEN_API
+#  define CFG_TUD_AUDIO_FUNC_2_DESC_LEN tinyusb_audio_descriptor_length(2)
+#endif
+#ifdef CFG_TUD_AUDIO_FUNC_3_DESC_LEN_API
+#  define CFG_TUD_AUDIO_FUNC_3_DESC_LEN tinyusb_audio_descriptor_length(3)
+#endif
+
+ * Also:
+@@ -41,9 +54,14 @@
+ #error You must tell the driver the length of the audio function descriptor including IAD descriptor^M
+ #endif^M
+ #if CFG_TUD_AUDIO > 1^M
+-#ifndef CFG_TUD_AUDIO_FUNC_2_DESC_LEN^M
+-#error You must tell the driver the length of the audio function descriptor including IAD descriptor^M
+-#endif^M
++#  ifndef CFG_TUD_AUDIO_FUNC_2_DESC_LEN^M
++#    error You must tell the driver the length of the audio function descriptor including IAD descriptor^M
++#  endif^M
++// determine descriptor length dynamically^M
++#  if CFG_TUD_AUDIO_FUNC_1_DESC_LEN == 0^M
++#    undef CFG_TUD_AUDIO_FUNC_1_DESC_LEN^M
++#    #define CFG_TUD_AUDIO_FUNC_1_DESC_LEN tinyusb_audio_descriptor_length(1)^M
++#  endif^M
+ #endif^M
+ #if CFG_TUD_AUDIO > 2^M
+ #ifndef CFG_TUD_AUDIO_FUNC_3_DESC_LEN^M
+
+ */
+
 // All sizes are in bytes!
 
 // Size of control buffer used to receive and send control messages via EP0 - has to be big enough to hold your

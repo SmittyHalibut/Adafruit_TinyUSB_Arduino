@@ -51,7 +51,7 @@
 /* Low level controller
  *------------------------------------------------------------------*/
 // HW buffer pointer from USB buffer space (max 3840 bytes)
-static uint8_t *hw_buffer_ptr;
+static uint8_t *hw_buffer_ptr = NULL;
 
 // USB_MAX_ENDPOINTS Endpoints, direction TUSB_DIR_OUT for out and TUSB_DIR_IN for in.
 static struct hw_endpoint hw_endpoints[USB_MAX_ENDPOINTS][2];
